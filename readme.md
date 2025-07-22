@@ -40,12 +40,12 @@ by d3v
   available: 12.34 gb
 
 📗 modules
-  🧠 slot: dimm0
+  🧠 slot: dimm 1
   📦 size: 8 gb
-  ⚡ speed: 3200 mhz
+  ⚡ speed: 3200 mt/s
   🔠 type: ddr4
-  📍 bank: bank 0
-  ✅ ecc: none
+  📍 bank: p0 channel a
+  ✅ ecc: -
   🔌 voltage: 1.2 v
 ```
 
