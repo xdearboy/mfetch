@@ -28,6 +28,26 @@
 - minimal dependencies and straightforward to build
 - requires root privileges to access detailed hardware info via dmidecode
 
+## Preview
+
+```bash
+📦 mfetch
+memory-focused system info tool
+by d3v
+
+💾 memory
+  total: 15.56 gb
+  available: 12.34 gb
+
+📗 modules
+  🧠 slot: dimm0
+  📦 size: 8 gb
+  ⚡ speed: 3200 mhz
+  🔠 type: ddr4
+  📍 bank: bank 0
+  ✅ ecc: none
+  🔌 voltage: 1.2 v
+```
 
 ## Installation
 
