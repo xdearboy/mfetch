@@ -1,7 +1,7 @@
 pkgname=mfetch
 pkgver=0.2.0
 pkgrel=1
-pkgdesc="Minimal system info fetcher"
+pkgdesc="📦 memory-focused system info tool written in Rust."
 arch=('x86_64')
 url="https://github.com/xdearboy/mfetch"
 license=('MIT')
