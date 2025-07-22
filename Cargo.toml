@@ -1,6 +1,6 @@
 [package]
 name = "mfetch"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["xdearboy <arsd3v@garticrashers.ru>"]
 edition = "2021"
 description = "📦 memory-focused system info tool written in Rust."
@@ -10,3 +10,7 @@ repository = "https://github.com/xdearboy/mfetch"
 
 [dependencies]
 colored = "3.0.0"
+
+[[bin]]
+name = "mfetch"
+path = "src/main.rs"
