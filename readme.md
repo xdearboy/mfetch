@@ -44,7 +44,7 @@ yay -S mfetch
 
 ## Usage
 ```bash
-mfetch
+sudo mfetch
 ```
 
 ## License
