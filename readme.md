@@ -20,14 +20,14 @@
 
 ## Features
 
-- total and available memory  
-- RAM module speed (MHz)  
-- type (DDR3 / DDR4 / DDR5)  
-- channel count  
-- manufacturer and model  
-- latency timings (CL, tRCD, etc. if available)  
-- ECC status  
-- voltage
+- lightweight and fast memory information tool written in rust
+- colorful and easy-to-read terminal output using the colored crate
+- displays total and available system memory from /proc/meminfo
+- detailed info about memory modules (dimms) via dmidecode
+- shows slot, size, speed, type, bank locator, ecc status, and configured voltage
+- minimal dependencies and straightforward to build
+- requires root privileges to access detailed hardware info via dmidecode
+
 
 ## Installation
 
