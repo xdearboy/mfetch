@@ -1,5 +1,5 @@
 pkgname=mfetch
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc="Minimal system info fetcher"
 arch=('x86_64')
