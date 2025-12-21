@@ -1,6 +1,6 @@
 [package]
 name = "mfetch"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["xdearboy <arsd3v@garticrashers.ru>"]
 edition = "2021"
 description = "📦 memory-focused system info tool written in Rust."
