@@ -1,5 +1,5 @@
 pkgname=mfetch
-pkgver=0.3.1
+pkgver=0.3.2
 pkgrel=1
 pkgdesc="📦 memory-focused system info tool written in Rust."
 arch=('x86_64')
