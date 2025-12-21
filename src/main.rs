@@ -114,8 +114,8 @@ fn main() {
 
             if let Some(t) = s_data.and_then(|s| s.get("timings")) {
                 println!(
-                    "      ⏱️  {:<12} {}", 
-                    (theme.key)("spd timings:"),
+                    "      ⏱️  {:<10} {}", 
+                    (theme.key)("timings:"),
                     (theme.val)(t)
                 );
             }
