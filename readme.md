@@ -63,6 +63,24 @@
 
 ```
 
+### ⚠️ disclaimer: spd vs real-time timings
+
+please note that `mfetch` displays **spd timings**, not the active (real-time) timings from your bios.
+
+* **what does it mean?**: you are seeing the "factory passport" data burned into the ram chip by the manufacturer (crucial, micron, samsung, etc.).
+* **why not real timings?**: active timings (like xmp, docp, or manual overclocking) are stored in the cpu's memory controller. accessing them requires complex, hardware-specific drivers that vary for every cpu generation.
+* **the result**: if you tightened your timings in the bios, `mfetch` will still show the default factory profiles fetched from the spd eeprom.
+
+
+
+### 🛠 enabling spd support
+if the `modules` section is empty, your system lacks access to the i2c bus. follow these steps:
+
+1. **load the drivers** (for ddr4/ddr5):
+   ```bash
+   sudo modprobe i2c-dev
+   sudo modprobe ee1004
+
 ## Installation
 
 Build from source:
