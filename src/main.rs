@@ -114,12 +114,11 @@ fn main() {
 
             if let Some(t) = s_data.and_then(|s| s.get("timings")) {
                 println!(
-                    "      ⏱️  {:<10} {}",
+                    "      ⏱️  {:<12} {}", 
                     (theme.key)("spd timings:"),
                     (theme.val)(t)
                 );
             }
-
             let size = module.get("size").map(|s| s.as_str()).unwrap_or("-");
             let speed = module.get("speed").map(|s| s.as_str()).unwrap_or("-");
             let volt = module
