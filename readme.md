@@ -1,4 +1,4 @@
-<h1 align="center">📦 mfetch</h1>
+<h1 align="center">📦 mfetch v0.0.3</h1>
 
 <p align="center">
   <a href="https://github.com/xdearboy/mfetch/blob/master/LICENSE">
@@ -31,22 +31,36 @@
 ## Preview
 
 ```bash
-📦 mfetch
-memory-focused system info tool
-by d3v
 
-💾 memory
-  total: 15.56 gb
-  available: 12.34 gb
+  mfetch
+  github.com/xdearboy/mfetch
+  ──────────────────────────────
 
-📗 modules
-  🧠 slot: dimm 1
-  📦 size: 8 gb
-  ⚡ speed: 3200 mt/s
-  🔠 type: ddr4
-  📍 bank: p0 channel a
-  ✅ ecc: -
-  🔌 voltage: 1.2 v
+  memory
+    total:       15.54 gb
+    available:   9.02 gb
+    usage:       ||||||......... 41.9%
+
+  modules
+
+    ○ slot dimm 1 (spd)
+      🏭 maker:     crucial technology
+      💎 dram:      micron technology
+      🏷️  part:      bl8g32c16u4bl.m8fe
+      ⏱️  timings:   19-19-19-43
+      📦 size:      8 gb
+      ⚡ speed:     3733 mt/s
+      🔌 voltage:   1.2 v
+
+    ○ slot dimm 1 (spd)
+      🏭 maker:     crucial technology
+      💎 dram:      micron technology
+      🏷️  part:      bl8g32c16u4bl.m8fe
+      ⏱️  timings:   19-19-19-43
+      📦 size:      8 gb
+      ⚡ speed:     3733 mt/s
+      🔌 voltage:   1.2 v
+
 ```
 
 ## Installation
@@ -64,6 +78,7 @@ yay -S mfetch
 
 ## Usage
 ```bash
+# Requires root privileges to see detailed memory module info
 sudo mfetch
 ```
 
