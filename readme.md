@@ -1,17 +1,17 @@
-<h1 align="center">📦 mfetch v0.0.3</h1>
+<h1 align="center">📦 mfetch v0.5.0</h1>
 
 <p align="center">
-  <a href="https://github.com/xdearboy/mfetch/blob/master/LICENSE">
+  <a href="https://github.com/org-fe/mfetch/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" />
   </a>
   <a href="https://crates.io/crates/mfetch">
     <img src="https://img.shields.io/crates/v/mfetch.svg" alt="mfetch crate version" />
   </a>
-  <a href="https://github.com/xdearboy/mfetch/stargazers">
-    <img src="https://img.shields.io/github/stars/xdearboy/mfetch.svg" alt="GitHub stars" />
+  <a href="https://github.com/org-fe/mfetch/stargazers">
+    <img src="https://img.shields.io/github/stars/org-fe/mfetch.svg" alt="GitHub stars" />
   </a>
-  <a href="https://github.com/xdearboy/mfetch/network">
-    <img src="https://img.shields.io/github/forks/xdearboy/mfetch.svg" alt="GitHub forks" />
+  <a href="https://github.com/org-fe/mfetch/network">
+    <img src="https://img.shields.io/github/forks/org-fe/mfetch.svg" alt="GitHub forks" />
   </a>
   <a href="https://aur.archlinux.org/packages/mfetch">
     <img src="https://img.shields.io/badge/AUR-mfetch-green.svg" alt="AUR package" />
@@ -20,85 +20,134 @@
 
 ## Features
 
-- lightweight and fast memory information tool written in rust
-- colorful and easy-to-read terminal output using the colored crate
-- displays total and available system memory from /proc/meminfo
-- detailed info about memory modules (dimms) via dmidecode
-- shows slot, size, speed, type, bank locator, ecc status, and configured voltage
-- minimal dependencies and straightforward to build
-- requires root privileges to access detailed hardware info via dmidecode
+- system info: hostname, os, kernel, uptime
+- cpu info: model, physical cores, logical threads
+- memory: total, available, usage with progress bar
+- swap: total, used, free
+- hugepages: size, total, used, free (if hugetlb configured)
+- memory pressure (psi): avg10/avg60/avg300 stall percentages
+- spd data per dimm: manufacturer, dram maker, timings, ranks, memory type
+- nvidia gpu: model, vram total and used
+- 8 built-in color themes
+- configurable via `~/.config/mfetch/config.toml`
+- requires root for dmidecode, decode-dimms, and nvidia-smi
+
+## Usage
+
+```bash
+# requires root for detailed module/gpu info
+sudo mfetch
+
+# debug mode shows raw keys and diagnostics
+sudo mfetch --debug
+
+# print version
+mfetch --version
+```
+
+## Config
+
+`~/.config/mfetch/config.toml` (auto-created on first run):
+
+```toml
+theme = "catppuccin"
+show_system = true
+show_cpu = true
+show_spd_source = true
+show_swap = true
+show_hugepages = true
+show_pressure = true
+show_modules = true
+show_gpu = true
+```
+
+Available themes: `catppuccin`, `tokyonight`, `rosepine`, `gruvbox`, `nord`, `dracula`, `everforest`, `neon`.
 
 ## Preview
 
 ```bash
 
   mfetch
-  github.com/xdearboy/mfetch
+  github.com/org-fe/mfetch
   ──────────────────────────────
 
+  system
+    host:        workstation
+    os:          Arch Linux
+    kernel:      Linux version 6.12.10
+    uptime:      3d 5h 12m
+
+  cpu
+    model:       Intel(R) Core(TM) Ultra 7 155H
+    cores:       16
+    threads:     22
+
   memory
-    total:       15.54 gb
-    available:   9.02 gb
-    usage:       ||||||......... 41.9%
+    total:       31.14 gb
+    available:   18.50 gb
+    usage:       |||||.......... 40.6%
+
+  swap
+    total:       8.00 gb
+    used:        1.23 gb (15.4%)
+    free:        6.77 gb
+
+  hugepages
+    size:        2048 mb
+    total:       16
+    used:        0
+    free:        16
+
+  mem pressure
+    avg10:       0.00%
+    avg60:       0.00%
+    avg300:      0.00%
 
   modules
 
-    ○ slot dimm 1 (spd)
+    ○ slot dimm 0 (spd)
       🏭 maker:     crucial technology
       💎 dram:      micron technology
-      🏷️  part:      bl8g32c16u4bl.m8fe
-      ⏱️  timings:   19-19-19-43
-      📦 size:      8 gb
-      ⚡ speed:     3733 mt/s
-      🔌 voltage:   1.2 v
+      🏷️  part:      ct16g56c46s5.m8g1
+      ⏱️  timings:   46-45-45-90
+      ≡ ranks:      1
+      ⬡ type:       ddr5 sdram
+      📦 size:      16 gb
+      ⚡ speed:     5600 mt/s
+      🔌 voltage:   1.1 v
 
-    ○ slot dimm 1 (spd)
-      🏭 maker:     crucial technology
-      💎 dram:      micron technology
-      🏷️  part:      bl8g32c16u4bl.m8fe
-      ⏱️  timings:   19-19-19-43
-      📦 size:      8 gb
-      ⚡ speed:     3733 mt/s
-      🔌 voltage:   1.2 v
+  gpu
+    name:        NVIDIA GeForce RTX 4090
+    vram total:  24564 mib
+    vram used:   8192 mib
 
 ```
 
 ### ⚠️ disclaimer: spd vs real-time timings
 
-please note that `mfetch` displays **spd timings**, not the active (real-time) timings from your bios.
-
-* **what does it mean?**: you are seeing the "factory passport" data burned into the ram chip by the manufacturer (crucial, micron, samsung, etc.).
-* **why not real timings?**: active timings (like xmp, docp, or manual overclocking) are stored in the cpu's memory controller. accessing them requires complex, hardware-specific drivers that vary for every cpu generation.
-* **the result**: if you tightened your timings in the bios, `mfetch` will still show the default factory profiles fetched from the spd eeprom.
-
-
+`mfetch` displays **spd timings** — the factory profiles burned into the ram chip (not the active bios/overclock timings from the cpu memory controller).
 
 ### 🛠 enabling spd support
-if the `modules` section is empty, your system lacks access to the i2c bus. follow these steps:
 
-1. **load the drivers** (for ddr4/ddr5):
-   ```bash
-   sudo modprobe i2c-dev
-   sudo modprobe ee1004
+if the `modules` section is empty:
+
+```bash
+sudo modprobe i2c-dev
+sudo modprobe ee1004
+```
 
 ## Installation
-
-Build from source:
 
 ```bash
 cargo build --release
 ```
-Or install via AUR (once package is added):
+
+Or via AUR:
 
 ```bash
 yay -S mfetch
 ```
 
-## Usage
-```bash
-# Requires root privileges to see detailed memory module info
-sudo mfetch
-```
-
 ## License
+
 MIT License. See LICENSE file for details.

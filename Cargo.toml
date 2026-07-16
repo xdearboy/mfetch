@@ -1,19 +1,17 @@
 [package]
 name = "mfetch"
-version = "0.3.2"
-authors = ["xdearboy <arsd3v@garticrashers.ru>"]
+version = "0.5.0"
+authors = ["ORG-FE", "c0redev"]
 edition = "2021"
 description = "📦 memory-focused system info tool written in Rust."
 license = "MIT"
-repository = "https://github.com/xdearboy/mfetch"
+repository = "https://github.com/org-fe/mfetch"
 
 
 [dependencies]
 colored = "3.0"
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.9.10"
-directories = "6.0.0"
-confy = "2.0.0"
 
 [[bin]]
 name = "mfetch"
